@@ -1,0 +1,46 @@
+create database Partner;
+
+create table product_type(
+	id serial primary key,
+	name text,
+	koef real
+);
+
+create table product (
+	id serial primary key,
+	product_type_id int references product_type(id),
+	name text,
+	article text, 
+	amount real
+);
+
+create table partner_type (
+	id serial primary key,
+	name text
+);
+
+create table partner (
+	id serial primary key,
+	partner_type int references partner_type(id),
+	name text unique,
+	director text,
+	email text,
+	phone text,
+	address text,
+	inn bigint,
+	rating int
+);
+
+create table partner_product(
+	id serial primary key,
+	namePartner text references partner(name),
+	name text,
+	amount int,
+	dateSale date
+);
+
+create table material (
+	id serial primary key,
+	name text,
+	defect real
+);
